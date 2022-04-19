@@ -33,18 +33,17 @@ int drivePID() {
     // For determining distance from desired value.
     int currentPosition = (LeftMotorGroup.position(degrees) + RightMotorGroup.position(degrees)) / 2;
 
-    lateral.error = currentPosition - lateral.setPoint;   // Update the current lateral error. The goal is to have error equal 0
+    lateral.error = currentPosition - lateral.setPoint;       // Update the current lateral error. The goal is to have error equal 0
     lateral.derivative = lateral.error - lateral.prevError;   // Update the lateral derivative. Compares current error to the error in previous iteration. Makes small adjustments based on that value.
-    lateral.integral += lateral.error;                     // Update the total lateral error. If the proportional component is consistantly lacking or overshooting, integral will grow very large.
+    lateral.integral += lateral.error;                        // Update the total lateral error. If the proportional component is consistantly lacking or overshooting, integral will grow very large.
     
     // Proportional + Derivative + Integral
     double lateralMotorPower = (lateral.error * lateral.kP + lateral.derivative * lateral.kD + lateral.integral * lateral.kI);
 
     // Turning Motion
-    // Comparing left and right motor groups then comparing to desired difference of the two motor groups.
-    int turnDifference = LeftMotorGroup.position(degrees) - RightMotorGroup.position(degrees);
+    int rotation = Inertial.rotation();
 
-    turning.error = turnDifference  - turning.setPoint;   // Explanation given above.
+    turning.error = rotation  - turning.setPoint;
     turning.derivative = turning.error - turning.prevError;
     turning.integral += turning.error; 
 
