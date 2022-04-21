@@ -25,15 +25,18 @@ controller Controller2 = controller(partner);
 
 inertial Inertial = inertial(PORT5);
 
-motor FrontLeftMotor = motor (PORT1, ratio18_1, false);
-motor FrontRightMotor = motor (PORT2, ratio18_1, true);
-motor BackLeftMotor = motor (PORT3, ratio18_1, false);
-motor BackRightMotor = motor (PORT4, ratio18_1, true);
+motor FrontLeftMotor = motor (PORT10, ratio18_1, false);
+motor FrontRightMotor = motor (PORT20, ratio18_1, true);
+motor BackLeftMotor = motor (PORT15, ratio18_1, false);
+motor BackRightMotor = motor (PORT14, ratio18_1, true);
 
 motor_group LeftMotorGroup = motor_group (FrontLeftMotor, BackLeftMotor);
 motor_group RightMotorGroup = motor_group (FrontRightMotor, BackRightMotor); 
 
 // Used to initialize code / tasks / devices.
 void vexcodeInit( void ) {
-
+  FrontLeftMotor.setPosition(0, deg);
+  FrontRightMotor.setPosition(0, deg);
+  BackLeftMotor.setPosition(0, deg);
+  BackRightMotor.setPosition(0, deg);
 }

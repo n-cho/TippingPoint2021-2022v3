@@ -11,20 +11,16 @@ int brainDisplay() {
     Brain.Screen.setCursor(1, 1);
 
     Brain.Screen.print("FrontLeftMotor: ");
-    Brain.Screen.print(FrontLeftMotor.velocity(percent));
+    Brain.Screen.print(FrontLeftMotor.position(degrees));
     Brain.Screen.newLine();
     Brain.Screen.print("FrontRightMotor: ");
-    Brain.Screen.print(FrontRightMotor.velocity(percent));
+    Brain.Screen.print(FrontRightMotor.position(degrees));
     Brain.Screen.newLine();
     Brain.Screen.print("BackLeftMotor: ");
-    Brain.Screen.print(BackLeftMotor.velocity(percent));
+    Brain.Screen.print(BackLeftMotor.position(degrees));
     Brain.Screen.newLine();
     Brain.Screen.print("BackRightMotor: ");
-    Brain.Screen.print(BackRightMotor.velocity(percent));
-    Brain.Screen.newLine();
-
-    Brain.Screen.print("Inertial: ");
-    Brain.Screen.print(Inertial.rotation());
+    Brain.Screen.print(BackRightMotor.position(degrees));
     Brain.Screen.newLine();
     vex::task::sleep(400);
   }

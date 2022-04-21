@@ -3,18 +3,18 @@
 using namespace vex;
 
 struct {
-  double kP = 0.0;
+  double kP = 0.03;
   double kI = 0.0;
   double kD = 0.0;
   int error = 0;
   int prevError = 0;
   int integral = 0;
-  int derivative = 0;
-  int setPoint = 200;
+  int derivative = 0;// inches * 90/M_PI / GearRation
+  int setPoint = 0;
 } lateral;
 
 struct {
-  double kP = 0.0;
+  double kP = 0.02;
   double kI = 0.0;
   double kD = 0.0;
   int error = 0;
@@ -31,9 +31,9 @@ int drivePID() {
     
     // Lateral Motion
     // For determining distance from desired value.
-    int currentPosition = (LeftMotorGroup.position(degrees) + RightMotorGroup.position(degrees)) / 2;
+    int currentPosition = (FrontLeftMotor.position(degrees) + FrontRightMotor.position(degrees)) / 2;
 
-    lateral.error = currentPosition - lateral.setPoint;       // Update the current lateral error. The goal is to have error equal 0
+    lateral.error = lateral.setPoint - currentPosition;       // Update the current lateral error. The goal is to have error equal 0
     lateral.derivative = lateral.error - lateral.prevError;   // Update the lateral derivative. Compares current error to the error in previous iteration. Makes small adjustments based on that value.
     lateral.integral += lateral.error;                        // Update the total lateral error. If the proportional component is consistantly lacking or overshooting, integral will grow very large.
     
