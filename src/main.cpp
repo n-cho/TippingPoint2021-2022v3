@@ -7,27 +7,27 @@
 /*                                                                            */
 /*----------------------------------------------------------------------------*/
 #include "vex.h"
-#include "drive-pid.h"
+#include "autonomous.h"
 #include "brain-display.h"
 
 using namespace vex;
 
 competition Competition;
+auton_drivetrain motion;
 
 void auton() {
   vex::task task0(drivePID);
   vex::task task1(brainDisplay);
   enablePID = true;
   enableDisplay = true;
-  lateral.setPoint = 10 * 90/M_PI;
 }
 
-void usercontrol() {
+void control() {
   enablePID = false;
 }
 
 int main() {
   vexcodeInit();
   Competition.autonomous(auton);
-  Competition.drivercontrol(usercontrol);
+  Competition.drivercontrol(control);
 }

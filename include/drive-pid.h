@@ -9,7 +9,7 @@ struct {
   int error = 0;
   int prevError = 0;
   int integral = 0;
-  int derivative = 0;// inches * 90/M_PI / GearRation
+  int derivative = 0;
   int setPoint = 0;
 } lateral;
 
