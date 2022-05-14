@@ -16,18 +16,19 @@ competition Competition;
 auton_drivetrain motion;
 
 void auton() {
-  vex::task task0(drivePID);
-  vex::task task1(brainDisplay);
   enablePID = true;
   enableDisplay = true;
 }
 
 void control() {
   enablePID = false;
+  
 }
 
 int main() {
   vexcodeInit();
+  vex::task task0(drivePID);
+  vex::task task1(brainDisplay);
   Competition.autonomous(auton);
   Competition.drivercontrol(control);
 }

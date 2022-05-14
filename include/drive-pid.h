@@ -31,7 +31,7 @@ int drivePID() {
     
     // Lateral Motion
     // For determining distance from desired value.
-    int currentPosition = (FrontLeftMotor.position(degrees) + FrontRightMotor.position(degrees)) / 2;
+    int currentPosition = (FrontLeftMotor.rotation(degrees) + FrontRightMotor.rotation(degrees)) / 2;
 
     lateral.error = lateral.setPoint - currentPosition;       // Update the current lateral error. The goal is to have error equal 0
     lateral.derivative = lateral.error - lateral.prevError;   // Update the lateral derivative. Compares current error to the error in previous iteration. Makes small adjustments based on that value.
